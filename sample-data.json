@@ -1,0 +1,82 @@
+[
+	{
+		"_id": 1,
+		"name": "John Doe",
+		"gender": "m",
+		"age": "30",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 2,
+		"name": "Jane Doe",
+		"gender": "f",
+		"age": "28",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 3,
+		"name": "Jake Doe",
+		"gender": "m",
+		"age": "31",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 4,
+		"name": "Jill Doe",
+		"gender": "f",
+		"age": "29",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 5,
+		"name": "John Smith",
+		"gender": "m",
+		"age": "30",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 6,
+		"name": "Billy Madison",
+		"gender": "m",
+		"age": "30",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 7,
+		"name": "Jen Lopez",
+		"gender": "f",
+		"age": "28",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 8,
+		"name": "Harry Potter",
+		"gender": "m",
+		"age": "31",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 9,
+		"name": "Jillian Cooper",
+		"gender": "f",
+		"age": "29",
+		"liked": [],
+		"disliked": []
+	},
+	{
+		"_id": 10,
+		"name": "Drake Malfoy",
+		"gender": "m",
+		"age": "30",
+		"liked": [],
+		"disliked": []
+	}
+]
