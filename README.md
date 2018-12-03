@@ -17,6 +17,8 @@
 
 #### GET /users
 
+`curl http://localhost:8000/users`
+
 #### GET users/{id}
 
 #### GET /users/{id}/recommendations
