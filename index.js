@@ -1,6 +1,7 @@
 const Hapi = require('hapi');
 const Users = require('./handlers/Users.js');
 const Matches = require('./handlers/Matches.js');
+const Swipes = require('./handlers/Swipes.js');
 
 // Create a server with a host and port
 const server=Hapi.server({
@@ -24,24 +25,10 @@ server.route({
     }
 });
 
-console.log(Users.getUsers)
-
+// Users
 server.route({
     method:'GET',
     path:'/users',
-    // async handler(request,h) {
-    //     let response = {};
-    //     try {
-    //       response = await client.search({
-    //         index: 'users',
-    //         q: '*'
-    //       });
-    //     } catch (error) {
-    //       console.trace(error.message)
-    //     }
-    //     response = response.hits ? response.hits.hits : [];
-    //     return response.map(o=>o._source);
-    // }
     handler: Users.getUsers
 });
 
@@ -57,10 +44,25 @@ server.route({
     handler: Users.getRecommendations
 });
 
+
+// Matches
 server.route({
     method:'GET',
     path:'/matches/{userId}',
     handler: Matches.getMatchesForUser
+});
+
+server.route({
+    method:'POST',
+    path:'/matches',
+    handler: Matches.addMatch
+});
+
+// Swipes
+server.route({
+    method:'POST',
+    path:'/swipes',
+    handler: Swipes.swipe
 });
 
 
