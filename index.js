@@ -4,9 +4,9 @@ const Matches = require('./handlers/Matches.js');
 const Swipes = require('./handlers/Swipes.js');
 
 // Create a server with a host and port
-const server=Hapi.server({
-    host:'0.0.0.0',
-    port:8000
+const server = Hapi.server({
+    host: '0.0.0.0',
+    port: 8000
 });
 
 
@@ -14,9 +14,9 @@ const server=Hapi.server({
 
 // Health check
 server.route({
-    method:'GET',
-    path:'/health',
-    handler:function(request,h) {
+    method: 'GET',
+    path: '/health',
+    handler: function(request, h) {
 
         return h.response('healthy').code(200);
     }
@@ -24,41 +24,41 @@ server.route({
 
 // Users
 server.route({
-    method:'GET',
-    path:'/users',
+    method: 'GET',
+    path: '/users',
     handler: Users.getUsers
 });
 
 server.route({
-    method:'GET',
-    path:'/users/{id}',
+    method: 'GET',
+    path: '/users/{id}',
     handler: Users.getUser
 });
 
 server.route({
-    method:'GET',
-    path:'/users/{id}/recommendations',
+    method: 'GET',
+    path: '/users/{id}/recommendations',
     handler: Users.getRecommendations
 });
 
 
 // Matches
 server.route({
-    method:'GET',
-    path:'/matches/{userId}',
+    method: 'GET',
+    path: '/matches/{userId}',
     handler: Matches.getMatchesForUser
 });
 
 server.route({
-    method:'POST',
-    path:'/matches',
+    method: 'POST',
+    path: '/matches',
     handler: Matches.addMatch
 });
 
 // Swipes
 server.route({
-    method:'POST',
-    path:'/swipes',
+    method: 'POST',
+    path: '/swipes',
     handler: Swipes.swipe
 });
 
@@ -68,8 +68,7 @@ async function start() {
 
     try {
         await server.start();
-    }
-    catch (err) {
+    } catch (err) {
         console.log(err);
         process.exit(1);
     }

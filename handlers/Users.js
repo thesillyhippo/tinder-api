@@ -1,34 +1,34 @@
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
-  host: '0.0.0.0:9200',
-  log: 'trace'
+    host: '0.0.0.0:9200',
+    log: 'trace'
 });
 
 const Users = {
     getUsers: async function(request, h) {
         let response = {};
         try {
-          response = await client.search({
-            index: 'tinder-users',
-            q: '*'
-          });
+            response = await client.search({
+                index: 'tinder-users',
+                q: '*'
+            });
         } catch (error) {
-          console.trace(error.message)
+            console.trace(error.message)
         }
         response = response.hits ? response.hits.hits : [];
-        return response.map(o=>o._source);
+        return response.map(o => o._source);
     },
     getUser: async function(request, h) {
         let id = request.params.id;
         let response = {};
         try {
-          response = await client.get({
-            index: 'tinder-users',
-            type: '_all',
-            id: id
-          });
+            response = await client.get({
+                index: 'tinder-users',
+                type: '_all',
+                id: id
+            });
         } catch (error) {
-          console.trace(error.message)
+            console.trace(error.message)
         }
         response = response._source;
 
@@ -40,21 +40,24 @@ const Users = {
 
 
         // First get user & get liked/disliked list
-        let user = await Users.getUser(request,h) || {liked: [], disliked: []};
+        let user = await Users.getUser(request, h) || {
+            liked: [],
+            disliked: []
+        };
         let blackList = user.liked.concat(user.disliked).concat(id);
 
         const body = {
-              "_source": ["name","gender","age"],
-              "query" : {
-                "bool" : {
-                  "must_not" : {
-                    "terms" : {
-                      "_id" : blackList
+            "_source": ["name", "gender", "age"],
+            "query": {
+                "bool": {
+                    "must_not": {
+                        "terms": {
+                            "_id": blackList
+                        }
                     }
-                  }
                 }
-              }
-            };
+            }
+        };
 
         // Logic for filtering preferences
         if (user.preferences && user.preferences.gender) {
@@ -67,15 +70,15 @@ const Users = {
         let genderPreference = user.preferences;
 
         try {
-          response = await client.search({
-            index: 'tinder-users',
-            body: body
-          });
+            response = await client.search({
+                index: 'tinder-users',
+                body: body
+            });
         } catch (error) {
-          console.trace(error.message)
+            console.trace(error.message)
         }
         response = response.hits ? response.hits.hits : [];
-        return response.map(o=>o._source);
+        return response.map(o => o._source);
     }
 }
 
