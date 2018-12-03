@@ -1,0 +1,3 @@
+
+curl -H 'Content-Type: application/json' -XPOST -d'{"users":["1","4"]}' 'localhost:8000/matches'
+curl -H 'Content-Type: application/json' -XPOST -d'{"swipe":"right","user1":"1","user2":"2"}' 'localhost:8000/swipes'

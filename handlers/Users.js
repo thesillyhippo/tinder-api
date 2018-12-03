@@ -41,7 +41,7 @@ const Users = {
 
         // First get user & get liked/disliked list
         let user = await Users.getUser(request,h) || {liked: [], disliked: []};
-        let blackList = user.liked.concat(user.disliked);
+        let blackList = user.liked.concat(user.disliked).concat(id);
 
         const body = {
               "_source": ["name","gender","age"],
