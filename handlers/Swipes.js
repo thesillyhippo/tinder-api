@@ -45,21 +45,18 @@ const Swipes = {
      let userRequest = _.cloneDeep(request);
      userRequest.params = {id: payload.user2};
      const secondUserResponse = await Users.getUser(userRequest);
-     console.log(secondUserResponse);
+
+     // If so, call match API
      if (secondUserResponse.liked.includes(payload.user1)) {
-      console.log("match!");
       let matchRequest = _.cloneDeep(request);
       matchRequest.payload = {
         users: [payload.user1, payload.user2]
       };
       let matchResponse = Matches.addMatch(matchRequest,h);
      }
-    
-
-
-     // If so, call match API
-      return 'right'
-
+  
+     
+      return h.response('successfully swiped right').code(200);
     },
     swipeLeft: async function(request, h) {
       const payload = request.payload || {};
@@ -83,7 +80,7 @@ const Swipes = {
           console.trace(error.message)
         }
 
-      return 'left'
+      return h.response('successfully swiped left').code(200);
     },
 }
 

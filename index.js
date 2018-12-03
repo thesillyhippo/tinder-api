@@ -9,19 +9,16 @@ const server=Hapi.server({
     port:8000
 });
 
-var elasticsearch = require('elasticsearch');
-var client = new elasticsearch.Client({
-  host: '0.0.0.0:9200',
-  log: 'trace'
-});
 
-// Add the route
+// Add the routes
+
+// Health check
 server.route({
     method:'GET',
-    path:'/hello',
+    path:'/health',
     handler:function(request,h) {
 
-        return'hello world';
+        return h.response('healthy').code(200);
     }
 });
 
@@ -65,38 +62,6 @@ server.route({
     handler: Swipes.swipe
 });
 
-
-// server.route({
-//     method:'POST',
-//     path:'/users',
-//     async handler(request,h) {
-//         let payload = request.payload;
-//         let response = {};
-//         try {
-//           response = await client.create({
-//             index: 'users',
-//             type: '_doc',
-//             id: payload.id,
-//             body: {
-//                 name: payload.name
-//             }
-//           });
-//         } catch (error) {
-//             if (error.statusCode == 409) {
-//                 return h.response('User already created with id ' + payload.id).code(409);
-//             } else {
-//                 return error.response;
-//             }
-//         }
-//         console.log(response);
-//         response = response._source;
-//         if (response.result == 'created') {
-//             return 'User created';
-//         } else {
-//             return 'User not created for some reason';
-//         }
-//     }
-// });
 
 // Start the server
 async function start() {

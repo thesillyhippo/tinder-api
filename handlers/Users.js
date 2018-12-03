@@ -4,7 +4,6 @@ var client = new elasticsearch.Client({
   log: 'trace'
 });
 
-
 const Users = {
     getUsers: async function(request, h) {
         let response = {};
@@ -28,7 +27,6 @@ const Users = {
             type: '_all',
             id: id
           });
-          console.log(response.hits.hits)
         } catch (error) {
           console.trace(error.message)
         }
